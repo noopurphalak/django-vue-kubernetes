@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: .
+    image: noopurphalak/kube-frontend
+    volumes:
+      - build:/app/dist
+  frontend_nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.nginx
+    image: noopurphalak/kube-frontend-nginx
+    ports:
+      - 80:80
+    volumes:
+      - build:/usr/share/nginx/html
+    depends_on:
+      - frontend
+volumes:
+  build:

@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+    image: noopurphalak/kube-backend
+    expose:
+      - 8000
+    volumes:
+      - static_data:/app/static
+      - media_data:/app/media
+    entrypoint: ./docker-entrypoint.sh
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.nginx
+    image: noopurphalak/kube-backend-nginx
+    ports:
+      - 80:80
+    volumes:
+      - static_data:/app/static
+      - media_data:/app/media
+    depends_on:
+      - web
+volumes:
+  static_data:
+  media_data:
