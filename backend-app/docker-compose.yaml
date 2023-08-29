@@ -2,7 +2,6 @@ version: "3.9"
 
 services:
   web:
-    platform: linux/amd64
     build:
       context: .
     image: noopurphalak/kube-backend
@@ -13,7 +12,6 @@ services:
       - media_data:/app/media
     entrypoint: ./docker-entrypoint.sh
   nginx:
-    platform: linux/amd64
     build:
       context: ./nginx
       dockerfile: Dockerfile.nginx

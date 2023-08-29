@@ -1,10 +1,10 @@
-FROM --platform=linux/amd64 node:18.17 AS builder
+FROM node:18.17 AS builder
 WORKDIR /app
 COPY . .
 RUN yarn install && yarn build
 
 
-FROM --platform=linux/amd64 nginx
+FROM nginx
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /app/dist .
 
