@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t kube-frontend .
+        run: docker build -t noopurphalak/kube-frontend .
 
       - name: Push Docker Image to Docker Hub
-        run: docker push kube-frontend
+        run: docker push noopurphalak/kube-frontend
